@@ -1,0 +1,39 @@
+apply plugin: 'osgi'
+apply plugin: 'eclipse'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-eclipse'
+
+sourceCompatibility = '1.7'
+
+repositories {
+	mavenCentral()
+	maven { url "http://repo.dotcms.com/artifactory/libs-release" }
+}
+
+dependencies {
+	compile('com.dotcms:dotcms:2.5.3') { transitive = true }
+	provided('javax.servlet:servlet-api:2.5')
+	compile fileTree(dir: 'src/main/resources/lib', include: '*.jar')
+}
+
+buildscript {
+	repositories {
+		maven { url 'http://repo.spring.io/plugins-release' }
+	}
+	dependencies {
+		classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+	}
+}
+
+jar {
+	manifest {
+		name = 'Save Pledge Tool'
+		symbolicName = 'edu.pittstate.plugins.savepledgetool'
+		instruction 'Bundle-Vendor', 'Pittstate'
+		instruction 'Bundle-Description', 'Pittstate Save Pledge Tool Plugin'
+		instruction 'Bundle-DocURL', 'http://www.aquent.com'
+		instruction 'Bundle-Activator', 'edu.pittstate.viewtools.SavePledgeToolActivator'
+		instruction 'Import-Package', '!org.springframework.*', '*;version=0'
+	}
+}
