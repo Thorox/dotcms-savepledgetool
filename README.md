@@ -17,6 +17,10 @@ Usage
 #set($firstname = $request.getParameter("_first_name-first"))
 #set($lastname = $request.getParameter("_first_name-last"))
 
+Call your object with the required variables populated as below:
+save(String $pledgeStatus, String $patronName, String $address, String $city, String $state, String $zipcode, String $telephone, String $emailAddress, String $totalPledge, String $premium,  String $onAir,  String $useName,  String $contactMe,  String $favorites,  String $addlcomments)
+
+Content is checked into CMS.
 
 Building
 --------
