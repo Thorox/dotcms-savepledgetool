@@ -1,6 +1,6 @@
-Post Viewtool
+Save Pledge Viewtool
 =================================================
-A plugin for dotCMS that adds a viewtool that allows the front-end developer to make simple post requests like curl
+A plugin for dotCMS that adds a "save pledge" viewtool that allows the front-end to save directly into the Pledge Structure object without having to use Ajax or REST.
 
 Installation
 -----
@@ -9,34 +9,14 @@ Installation
 
 Compatibility
 -----
-Known to work with 2.5.1. Should be fully 2.3+ compatible though.
+Known to work with 2.5+.
 
 Usage
 -----
-```
-#set($url = "http://${request.getServerName()}/test/viewtools/posttool2.htm")
-#set($params = "postdata=hello 褩䤩矩い覦")
+* put your data from post into variables
+#set($firstname = $request.getParameter("_first_name-first"))
+#set($lastname = $request.getParameter("_first_name-last"))
 
-#set($paramsMap = $contents.getEmptyMap())
-#set($_dummy = $paramsMap.put("postdata","hello 褩䤩矩い覦"))
-
-<h3> Get:  </h3>
-#set($resp = $post.sendGet("${url}?${params}"))
-<p>Status:  $resp.getResponseCode() <br /> 
-You got: <textarea>$resp.getResponse()</textarea> </p>
-
-
-<h3> Post: </h3>
-#set($resp2 = $post.send($url, $params, "POST"))
-<p>Status:  $resp2.getResponseCode() <br /> 
-You got: <textarea>$resp2.getResponse()</textarea> </p>
-
-
-<h3> Test with a Map </h3>
-#set($resp3 = $post.send($url, $paramsMap, "GET"))
-<p>Status:  $resp3.getResponseCode() <br /> 
-You got: <textarea>$resp3.getResponse()</textarea> </p>
-```
 
 Building
 --------
